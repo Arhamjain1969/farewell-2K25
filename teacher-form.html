@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Invitation - AURELIA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a0a3e 0%, #2d1b69 25%, #1e5a8f 50%, #2d1b69 75%, #1a0a3e 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #fff;
+            padding: 1rem;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent);
+            background-size: 200% 200%;
+            animation: sparkle 3s ease-in-out infinite;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255, 215, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .form-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            letter-spacing: 2px;
+        }
+
+        .form-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        select option {
+            background: #2d1b69;
+            color: #fff;
+            padding: 0.5rem;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        button {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ffab00 100%);
+            color: #000;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .error {
+            border-color: #ff6b6b !important;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5) !important;
+        }
+
+        .error-message {
+            color: #ffcccb;
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+            display: none;
+        }
+
+        .info-note {
+            background: rgba(79, 195, 247, 0.2);
+            border-left: 3px solid #4fc3f7;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .toggle-link {
+            color: #ffd700;
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .toggle-link:hover {
+            color: #ffed4e;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .form-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="form-header">
+        <p class="form-subtitle">AURELIA '25</p>
+        <h1>Teacher Invitation 👨‍🏫</h1>
+        <p>Enter your details for the invitation</p>
+    </div>
+
+    <div class="info-note">
+        💡 Select your name from the list or enter it manually if not listed. Add your designation if applicable (Principal, HOD, etc.).
+    </div>
+
+    <form id="teacherForm" onsubmit="handleSubmit(event)">
+        <!-- Dropdown selection mode -->
+        <div id="dropdownMode">
+            <div class="form-group">
+                <label for="teacherNameSelect">Teacher Name *</label>
+                <select id="teacherNameSelect" name="teacherNameSelect">
+                    <option value="">-- Select Your Name --</option>
+                    <option value="Nishtha Kapoor">Nishtha Kapoor</option>
+                    <option value="Mitika Jhanda">Mitika Jhanda</option>
+                    <option value="Gurpreet Arora">Gurpreet Arora</option>
+                    <option value="Vinda P Mandothan">Vinda P Mandothan</option>
+                    <option value="Neelu Chugh">Neelu Chugh</option>
+                    <option value="Swati Bisaria">Swati Bisaria</option>
+                    <option value="Sona Kapoor">Sona Kapoor</option>
+                    <option value="Renu Sharma">Renu Sharma</option>
+                    <option value="Avni Barjatya">Avni Barjatya</option>
+                    <option value="Deepali Begwani">Deepali Begwani</option>
+                    <option value="Shabnam Khan">Shabnam Khan</option>
+                    <option value="Shahi Siddiqui">Shahi Siddiqui</option>
+                    <option value="Hyna Gill">Hyna Gill</option>
+                    <option value="Meenal Jha">Meenal Jha</option>
+                    <option value="Asmita Parashar">Asmita Parashar</option>
+                    <option value="Yamini Bhargava">Yamini Bhargava</option>
+                    <option value="Chandralekha">Chandralekha</option>
+                    <option value="Kavita Dwivedi">Kavita Dwivedi</option>
+                    <option value="Bharti Jodhani">Bharti Jodhani</option>
+                    <option value="Kashish Shah">Kashish Shah</option>
+                    <option value="Bhavana Narwani">Bhavana Narwani</option>
+                    <option value="Ankita Kashyap">Ankita Kashyap</option>
+                    <option value="Pratik Deepakbhai Chudasama">Pratik Deepakbhai Chudasama</option>
+                    <option value="Shweta Singh">Shweta Singh</option>
+                    <option value="Satyam Sudha Rao">Satyam Sudha Rao</option>
+                    <option value="Dipti Bisariya">Dipti Bisariya</option>
+                    <option value="Aruna Khare">Aruna Khare</option>
+                    <option value="Rahul Bhargava">Rahul Bhargava</option>
+                    <option value="Shazia Ali">Shazia Ali</option>
+                    <option value="Tarun Kumar Arora">Tarun Kumar Arora</option>
+                    <option value="Shweta Gulati">Shweta Gulati</option>
+                    <option value="Raksha Parashar">Raksha Parashar</option>
+                    <option value="Rukhsar Hussain">Rukhsar Hussain</option>
+                    <option value="Sukhprit Kaur">Sukhprit Kaur</option>
+                    <option value="Rakhshan Ansari">Rakhshan Ansari</option>
+                    <option value="Ahab Zafar">Ahab Zafar</option>
+                    <option value="Deepika Mishra">Deepika Mishra</option>
+                    <option value="Kanchan Singh">Kanchan Singh</option>
+                    <option value="Shivika Mangal">Shivika Mangal</option>
+                    <option value="Kirti Bajpai">Kirti Bajpai</option>
+                    <option value="Manisha Khede">Manisha Khede</option>
+                    <option value="Toshi Sharma">Toshi Sharma</option>
+                    <option value="Bhupendra Singh Solanki">Bhupendra Singh Solanki</option>
+                    <option value="Anushree Khemriya">Anushree Khemriya</option>
+                    <option value="Devyani Saraswat">Devyani Saraswat</option>
+                    <option value="Shriyanshi Sharma">Shriyanshi Sharma</option>
+                    <option value="Arti Verma">Arti Verma</option>
+                    <option value="Sangeeta Wadhwa">Sangeeta Wadhwa</option>
+                    <option value="Mohit Tripathi">Mohit Tripathi</option>
+                    <option value="Hemant Kumar Patidar">Hemant Kumar Patidar</option>
+                    <option value="Rajkumar Tripathi">Rajkumar Tripathi</option>
+                    <option value="Kiran Singh">Kiran Singh</option>
+                    <option value="Padmaja Nesamoorthy">Padmaja Nesamoorthy</option>
+                    <option value="Preeti Saxena">Preeti Saxena</option>
+                    <option value="Vidushi Dixit">Vidushi Dixit</option>
+                    <option value="Garima Ambadkar">Garima Ambadkar</option>
+                    <option value="Soumya Saxena">Soumya Saxena</option>
+                    <option value="Vrushali Rewadikar">Vrushali Rewadikar</option>
+                    <option value="Awdhesh Kumar Pandey">Awdhesh Kumar Pandey</option>
+                    <option value="Smriti Tiwari">Smriti Tiwari</option>
+                    <option value="Reshu Sinha">Reshu Sinha</option>
+                    <option value="Debjani Diwan">Debjani Diwan</option>
+                    <option value="Saima Parveen">Saima Parveen</option>
+                    <option value="Vijayalaxmi Nair">Vijayalaxmi Nair</option>
+                    <option value="Saima Nego">Saima Nego</option>
+                    <option value="Toshi Pandya">Toshi Pandya</option>
+                    <option value="Manju Jhawar">Manju Jhawar</option>
+                    <option value="Divya Adwani">Divya Adwani</option>
+                    <option value="Neena Mishra">Neena Mishra</option>
+                    <option value="Kaushumbhki Nayak">Kaushumbhki Nayak</option>
+                    <option value="Surabhi Singh Gour">Surabhi Singh Gour</option>
+                    <option value="Nandita Saxena">Nandita Saxena</option>
+                    <option value="Dipti Tiwari">Dipti Tiwari</option>
+                    <option value="Harshita Parmar">Harshita Parmar</option>
+                    <option value="Anurag Raikwar">Anurag Raikwar</option>
+                    <option value="Jyoti Tripathi">Jyoti Tripathi</option>
+                    <option value="Meenakshi Soni">Meenakshi Soni</option>
+                    <option value="Pradeep Sharma">Pradeep Sharma</option>
+                    <option value="Dilawar Singh Sahu">Dilawar Singh Sahu</option>
+                    <option value="Umesh Parmar">Umesh Parmar</option>
+                    <option value="Anurag Sehgal">Anurag Sehgal</option>
+                    <option value="Rupali Patankar">Rupali Patankar</option>
+                    <option value="Sweta Nandan">Sweta Nandan</option>
+                    <option value="Sarika Amlavad">Sarika Amlavad</option>
+                    <option value="Asad Mohammad">Asad Mohammad</option>
+                    <option value="Toshi Raghuwanshi">Toshi Raghuwanshi</option>
+                    <option value="Kuldeep Kaur">Kuldeep Kaur</option>
+                    <option value="Priyanka Mehendiratta">Priyanka Mehendiratta</option>
+                    <option value="Shrinkhala Lobo">Shrinkhala Lobo</option>
+                    <option value="Zeba Zafar">Zeba Zafar</option>
+                    <option value="Archana Kalkotwar">Archana Kalkotwar</option>
+                    <option value="Pooja Nema">Pooja Nema</option>
+                    <option value="Shilpa Aailani">Shilpa Aailani</option>
+                    <option value="Shikha Sharma">Shikha Sharma</option>
+                    <option value="Ajay Kumar Das">Ajay Kumar Das</option>
+                    <option value="Lata Ahuja">Lata Ahuja</option>
+                    <option value="Mitali Roy">Mitali Roy</option>
+                    <option value="Sonali Joshi">Sonali Joshi</option>
+                    <option value="Parduman Singh">Parduman Singh</option>
+                    <option value="Prachi Gijare">Prachi Gijare</option>
+                </select>
+                <span class="error-message" id="nameSelectError">Please select a name</span>
+            </div>
+            <span class="toggle-link" onclick="toggleMode()">📝 My name is not in the list</span>
+        </div>
+
+        <!-- Manual entry mode -->
+        <div id="manualMode" class="hidden">
+            <div class="form-group">
+                <label for="teacherNameInput">Teacher Name *</label>
+                <input 
+                    type="text" 
+                    id="teacherNameInput" 
+                    name="teacherNameInput" 
+                    placeholder="Enter your full name"
+                >
+                <span class="error-message" id="nameInputError">Please enter your name</span>
+            </div>
+            <span class="toggle-link" onclick="toggleMode()">📋 Select from list instead</span>
+        </div>
+
+        <div class="form-group">
+            <label for="teacherSubject">Subject/Department *</label>
+            <input 
+                type="text" 
+                id="teacherSubject" 
+                name="teacherSubject" 
+                placeholder="e.g., Mathematics, Science, English"
+                required
+            >
+            <span class="error-message" id="subjectError">Please enter your subject</span>
+        </div>
+
+        <div class="form-group">
+            <label for="teacherDesignation">Designation (Optional)</label>
+            <input 
+                type="text" 
+                id="teacherDesignation" 
+                name="teacherDesignation" 
+                placeholder="e.g., Principal, Vice Principal, HOD, Head Mistress"
+            >
+        </div>
+
+        <div class="button-group">
+            <button type="button" class="back-btn" onclick="goBack()">Back</button>
+            <button type="submit" class="submit-btn">Generate</button>
+        </div>
+    </form>
+</div>
+
+<script>
+let isManualMode = false;
+
+function toggleMode() {
+    isManualMode = !isManualMode;
+    
+    const dropdownMode = document.getElementById('dropdownMode');
+    const manualMode = document.getElementById('manualMode');
+    
+    if (isManualMode) {
+        dropdownMode.classList.add('hidden');
+        manualMode.classList.remove('hidden');
+        document.getElementById('teacherNameSelect').removeAttribute('required');
+        document.getElementById('teacherNameInput').setAttribute('required', 'required');
+    } else {
+        manualMode.classList.add('hidden');
+        dropdownMode.classList.remove('hidden');
+        document.getElementById('teacherNameInput').removeAttribute('required');
+        document.getElementById('teacherNameSelect').setAttribute('required', 'required');
+    }
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    
+    let name = '';
+    
+    if (isManualMode) {
+        name = document.getElementById('teacherNameInput').value.trim();
+        if (!name) {
+            showError('teacherNameInput', 'nameInputError');
+            return;
+        }
+    } else {
+        name = document.getElementById('teacherNameSelect').value.trim();
+        if (!name) {
+            showError('teacherNameSelect', 'nameSelectError');
+            return;
+        }
+    }
+    
+    const subject = document.getElementById('teacherSubject').value.trim();
+    const designation = document.getElementById('teacherDesignation').value.trim();
+    
+    if (!subject) {
+        showError('teacherSubject', 'subjectError');
+        return;
+    }
+    
+    localStorage.setItem('invitationType', 'teacher');
+    localStorage.setItem('teacherName', name);
+    localStorage.setItem('teacherSubject', subject);
+    localStorage.setItem('teacherDesignation', designation);
+    
+    window.location.href = 'teacher-invitation.html';
+}
+
+function showError(inputId, errorId) {
+    document.getElementById(inputId).classList.add('error');
+    document.getElementById(errorId).style.display = 'block';
+    
+    const clearError = function() {
+        document.getElementById(inputId).classList.remove('error');
+        document.getElementById(errorId).style.display = 'none';
+    };
+    
+    document.getElementById(inputId).addEventListener('input', clearError);
+    document.getElementById(inputId).addEventListener('change', clearError);
+}
+
+function goBack() {
+    window.location.href = 'index.html';
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,721 @@
+/* ============================================================ */
+/* AURELIA FAREWELL THEME - ULTRA RESPONSIVE */
+/* ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1a0a3e 0%, #2d1b69 25%, #1e5a8f 50%, #2d1b69 75%, #1a0a3e 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* String lights effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255, 215, 0, 0.15) 100px, transparent 102px),
+        repeating-linear-gradient(-45deg, transparent, transparent 100px, rgba(255, 215, 0, 0.15) 100px, transparent 102px);
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+/* Sparkle effect */
+body::after {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 33% 80%, white, transparent);
+    background-size: 200% 200%;
+    animation: sparkle 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+/* ============================================================ */
+/* LOGO CONTAINER */
+/* ============================================================ */
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 0.5rem;
+}
+
+.logo-container img {
+    max-width: min(280px, 90vw);
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2));
+}
+
+.farewell-container {
+    width: 100%;
+    max-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem clamp(0.5rem, 3vw, 2rem);
+    position: relative;
+    z-index: 10;
+    overflow-x: hidden;
+}
+
+/* ============================================================ */
+/* INVITATION CARD */
+/* ============================================================ */
+
+.farewell-card {
+    width: 100%;
+    max-width: min(750px, 95vw);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 248, 255, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: clamp(12px, 3vw, 25px);
+    padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 3vw, 3.5rem);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(138, 43, 226, 0.4),
+        inset 0 0 50px rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Decorative top border */
+.farewell-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, #ffd700 20%, #4fc3f7 50%, #ffd700 80%, transparent 100%);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+}
+
+/* ============================================================ */
+/* CARD CONTENT */
+/* ============================================================ */
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+    padding-bottom: clamp(1rem, 3vw, 1.5rem);
+    border-bottom: 2px solid rgba(79, 195, 247, 0.3);
+    width: 100%;
+}
+
+.farewell-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: 800;
+    color: #1a0a3e;
+    margin-bottom: 0.5rem;
+    letter-spacing: clamp(0.5px, 0.5vw, 2px);
+    text-shadow: 0 2px 10px rgba(79, 195, 247, 0.3);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.event-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a0a3e 0%, #2d1b69 100%);
+    color: white;
+    padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(1rem, 3vw, 1.5rem);
+    border-radius: 50px;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    letter-spacing: clamp(1px, 0.3vw, 2px);
+    margin-bottom: 0.8rem;
+    box-shadow: 0 4px 15px rgba(26, 10, 62, 0.4);
+}
+
+.aurelia-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 6vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: clamp(3px, 1.5vw, 8px);
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #1a0a3e 0%, #4fc3f7 50%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(79, 195, 247, 0.5);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.tagline {
+    font-size: clamp(0.75rem, 2.2vw, 1rem);
+    letter-spacing: clamp(1px, 0.3vw, 2px);
+    color: #2d1b69;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.decorative-line {
+    width: clamp(50px, 15vw, 80px);
+    height: 3px;
+    background: linear-gradient(90deg, #4fc3f7 0%, #ffd700 100%);
+    margin: clamp(0.8rem, 2vw, 1rem) auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(79, 195, 247, 0.5);
+}
+
+/* ============================================================ */
+/* STUDENT/TEACHER INFO */
+/* ============================================================ */
+
+.student-info {
+    text-align: center;
+    margin: clamp(1.5rem, 4vw, 2rem) 0 clamp(2rem, 4vw, 2.5rem) 0;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+    border-radius: 15px;
+    border: 2px solid rgba(79, 195, 247, 0.3);
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.greeting {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    color: #2d1b69;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.student-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 5vw, 2.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #1a0a3e 0%, #4fc3f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: clamp(0.5rem, 2vw, 0.7rem) 0 clamp(1rem, 3vw, 1.5rem) 0;
+    letter-spacing: clamp(0.3px, 0.2vw, 1px);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.info-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.85rem, 2.3vw, 1.05rem);
+    color: #2d1b69;
+    margin: clamp(0.6rem, 2vw, 0.8rem) 0;
+    font-weight: 500;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.info-text span {
+    color: #1a0a3e;
+    font-weight: 700;
+}
+
+.honorific {
+    font-size: clamp(0.95rem, 2.8vw, 1.2rem);
+    font-weight: 600;
+    color: #2d1b69;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ============================================================ */
+/* CARD MESSAGE */
+/* ============================================================ */
+
+.card-message {
+    background: linear-gradient(135deg, rgba(79, 195, 247, 0.15) 0%, rgba(255, 215, 0, 0.15) 100%);
+    border-left: 4px solid #4fc3f7;
+    border-right: 4px solid #ffd700;
+    padding: clamp(1.2rem, 3vw, 2rem) clamp(1rem, 2.5vw, 1.8rem);
+    border-radius: 12px;
+    margin: clamp(1.5rem, 4vw, 2rem) 0;
+    box-shadow: 0 4px 15px rgba(79, 195, 247, 0.2);
+    width: 100%;
+}
+
+.card-message p {
+    color: #1a0a3e;
+    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+    line-height: clamp(1.6, 1.8, 1.9);
+    font-weight: 400;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.card-message strong {
+    color: #2d1b69;
+    font-weight: 700;
+}
+
+/* ============================================================ */
+/* CARD FOOTER */
+/* ============================================================ */
+
+.card-footer {
+    text-align: center;
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    padding-top: clamp(1.5rem, 3vw, 2rem);
+    border-top: 2px solid rgba(79, 195, 247, 0.3);
+    width: 100%;
+}
+
+.farewell-wishes {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3.5vw, 1.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #1a0a3e 0%, #4fc3f7 50%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: clamp(0.6rem, 2vw, 0.8rem);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.date {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.8rem, 2.2vw, 1rem);
+    color: #2d1b69;
+    font-weight: 500;
+}
+
+.signature {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    color: #2d1b69;
+    margin-top: clamp(0.6rem, 2vw, 0.8rem);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.card-signature {
+    text-align: center;
+    margin-top: clamp(1rem, 3vw, 1.5rem);
+    width: 100%;
+}
+
+/* ============================================================ */
+/* CARD ACTIONS */
+/* ============================================================ */
+
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(0.8rem, 2vw, 1.5rem);
+    justify-content: center;
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    width: 100%;
+}
+
+.action-btn {
+    padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
+    border: 2px solid rgba(79, 195, 247, 0.5);
+    border-radius: 50px;
+    background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%);
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.8rem, 2.2vw, 1rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: clamp(0.3px, 0.2vw, 1px);
+    text-transform: uppercase;
+    box-shadow: 0 8px 25px rgba(79, 195, 247, 0.4);
+    white-space: nowrap;
+    flex: 1 1 auto;
+    min-width: clamp(100px, 25vw, 150px);
+    max-width: 100%;
+}
+
+.action-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(79, 195, 247, 0.6);
+    background: linear-gradient(135deg, #29b6f6 0%, #4fc3f7 100%);
+}
+
+.action-btn:active {
+    transform: translateY(-2px);
+}
+
+.download-btn {
+    background: linear-gradient(135deg, #ffd700 0%, #ffab00 100%);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.download-btn:hover {
+    background: linear-gradient(135deg, #ffab00 0%, #ffd700 100%);
+    box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+}
+
+.back-btn {
+    background: linear-gradient(135deg, rgba(26, 10, 62, 0.8) 0%, rgba(45, 27, 105, 0.8) 100%);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(26, 10, 62, 0.4);
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, rgba(45, 27, 105, 0.9) 0%, rgba(26, 10, 62, 0.9) 100%);
+    box-shadow: 0 12px 35px rgba(26, 10, 62, 0.6);
+}
+
+/* ============================================================ */
+/* ULTRA RESPONSIVE - NO OVERFLOW */
+/* ============================================================ */
+
+/* Extra small phones (320px and up) */
+@media (max-width: 400px) {
+    body {
+        padding: 0;
+    }
+
+    .farewell-container {
+        padding: 0.5rem;
+        min-height: 100vh;
+    }
+
+    .logo-container {
+        margin-bottom: 0.8rem;
+        padding: 0 0.3rem;
+    }
+
+    .logo-container img {
+        max-width: min(160px, 85vw);
+    }
+
+    .farewell-card {
+        padding: 1.2rem 0.8rem;
+        border-radius: 12px;
+        max-width: 98vw;
+    }
+
+    .card-header {
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.8rem;
+    }
+
+    .event-badge {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    .aurelia-title {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    .tagline {
+        font-size: 0.7rem;
+        letter-spacing: 0.8px;
+    }
+
+    .farewell-title {
+        font-size: 1.4rem;
+    }
+
+    .student-info {
+        padding: 1rem 0.7rem;
+        margin: 1.2rem 0 1.5rem 0;
+    }
+
+    .greeting {
+        font-size: 0.85rem;
+    }
+
+    .student-name {
+        font-size: 1.25rem;
+        margin: 0.4rem 0 0.8rem 0;
+    }
+
+    .info-text {
+        font-size: 0.8rem;
+        margin: 0.5rem 0;
+    }
+
+    .honorific {
+        font-size: 0.9rem;
+    }
+
+    .card-message {
+        padding: 1rem 0.8rem;
+        margin: 1.2rem 0;
+        border-left-width: 3px;
+        border-right-width: 3px;
+    }
+
+    .card-message p {
+        font-size: 0.82rem;
+        line-height: 1.6;
+    }
+
+    .card-footer {
+        margin-top: 1.2rem;
+        padding-top: 1.2rem;
+    }
+
+    .farewell-wishes {
+        font-size: 0.95rem;
+    }
+
+    .date {
+        font-size: 0.75rem;
+    }
+
+    .signature {
+        font-size: 0.72rem;
+    }
+
+    .card-actions {
+        flex-direction: column;
+        gap: 0.7rem;
+        margin-top: 1.2rem;
+    }
+
+    .action-btn {
+        width: 100%;
+        padding: 0.85rem 1.2rem;
+        font-size: 0.8rem;
+        min-width: 100%;
+    }
+
+    .decorative-line {
+        width: 40px;
+        height: 2px;
+    }
+}
+
+/* Small phones (400px to 480px) */
+@media (min-width: 401px) and (max-width: 480px) {
+    .farewell-container {
+        padding: 0.75rem;
+    }
+
+    .logo-container img {
+        max-width: min(180px, 88vw);
+    }
+
+    .farewell-card {
+        padding: 1.5rem 1rem;
+        max-width: 96vw;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .action-btn {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+/* Medium phones (481px to 640px) */
+@media (min-width: 481px) and (max-width: 640px) {
+    .farewell-container {
+        padding: 1rem;
+    }
+
+    .logo-container img {
+        max-width: min(220px, 90vw);
+    }
+
+    .farewell-card {
+        max-width: 94vw;
+    }
+
+    .card-actions {
+        gap: 1rem;
+    }
+
+    .action-btn {
+        flex: 1 1 calc(50% - 0.5rem);
+        min-width: calc(50% - 0.5rem);
+    }
+
+    .back-btn {
+        flex: 1 1 100%;
+        min-width: 100%;
+    }
+}
+
+/* Tablets (641px to 768px) */
+@media (min-width: 641px) and (max-width: 768px) {
+    .logo-container img {
+        max-width: min(240px, 90vw);
+    }
+
+    .farewell-card {
+        max-width: 92vw;
+    }
+}
+
+/* Landscape orientation on small devices */
+@media (max-height: 600px) and (orientation: landscape) {
+    .farewell-container {
+        padding: 0.5rem;
+        min-height: auto;
+    }
+
+    .logo-container {
+        margin-bottom: 0.5rem;
+    }
+
+    .logo-container img {
+        max-width: min(140px, 20vh);
+    }
+
+    .farewell-card {
+        padding: 1rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+
+    .card-header {
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.6rem;
+    }
+
+    .student-info {
+        margin: 1rem 0;
+        padding: 0.8rem;
+    }
+
+    .card-message {
+        margin: 1rem 0;
+        padding: 0.8rem;
+    }
+
+    .card-footer {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .card-actions {
+        margin-top: 0.8rem;
+        gap: 0.6rem;
+    }
+
+    .action-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================================ */
+/* ACCESSIBILITY */
+/* ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white;
+    }
+
+    body::before,
+    body::after {
+        display: none;
+    }
+
+    .farewell-container {
+        min-height: auto;
+        padding: 0;
+    }
+
+    .farewell-card {
+        box-shadow: none;
+        page-break-inside: avoid;
+        background: white;
+        max-width: 100%;
+    }
+
+    .card-actions {
+        display: none;
+    }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Invitation - AURELIA '25</title>
+    <link rel="stylesheet" href="aurelia-style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="farewell-container">
+        <div class="farewell-card">
+            <div class="card-content">
+                <!-- DPS Logo -->
+                <div class="logo-container">
+                    <img src="dps-logo.png" alt="Delhi Public School Bhopal - 25 Years">
+                </div>
+
+                <div class="card-header">
+                    <p class="event-badge">FAREWELL '25</p>
+                    <h1 class="aurelia-title">AURELIA</h1>
+                    <p class="tagline">FORGED IN SILVER, BOUND FOR GOLD</p>
+                    <div class="decorative-line"></div>
+                    <h2 class="farewell-title">You're Invited!</h2>
+                </div>
+
+                <div class="student-info">
+                    <p class="greeting">Dear,</p>
+                    <h2 class="student-name" id="displayName">Student Name</h2>
+                    <p class="info-text">Class: <span id="displayClass">--</span> | Section: <span id="displaySection">--</span></p>
+                </div>
+
+                <div class="card-message">
+                    <p>
+                        We cordially invite you to <strong>AURELIA - Farewell 2025</strong>, 
+                        a celebration of your incredible journey with us. Join us as we honor 
+                        your achievements, cherish our shared memories, and wish you success 
+                        as you embark on new adventures. Your presence will make this evening 
+                        truly magical and unforgettable.
+                    </p>
+                </div>
+
+                <div class="card-footer">
+                    <p class="farewell-wishes">We can't wait to celebrate with you! 🎓✨</p>
+                    <p class="date" id="cardDate"></p>
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <button class="action-btn print-btn" onclick="printCard()">Print</button>
+                <button class="action-btn download-btn" onclick="downloadCard()">Download</button>
+                <button class="action-btn back-btn" onclick="goBack()">Edit</button>
+            </div>
+
+            <div class="card-signature" aria-hidden="true">
+                <p class="signature">© All rights reserved by <a style="text-decoration: underline;color: #000000 ;" href="https://www.instagram.com/pastrace1122">Arham.J</a>. </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="student-script.js"></script>
+</body>
+</html>

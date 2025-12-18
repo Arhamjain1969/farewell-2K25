@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Student Invitation - AURELIA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a0a3e 0%, #2d1b69 25%, #1e5a8f 50%, #2d1b69 75%, #1a0a3e 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #fff;
+            padding: clamp(0.5rem, 2vw, 1rem);
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent);
+            background-size: 200% 200%;
+            animation: sparkle 3s ease-in-out infinite;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: clamp(1.5rem, 3vw, 2rem) clamp(1.2rem, 3vw, 2rem) clamp(2rem, 3vw, 2.5rem);
+            border-radius: clamp(15px, 3vw, 20px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(79, 195, 247, 0.3);
+            max-width: min(500px, 95vw);
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 clamp(0.5rem, 2vw, 1rem);
+        }
+
+        .logo-container img {
+            max-width: min(240px, 85vw);
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .form-header h1 {
+            font-size: clamp(1.5rem, 4.5vw, 2rem);
+            margin-bottom: 0.3rem;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+            word-wrap: break-word;
+        }
+
+        .form-subtitle {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            opacity: 0.85;
+            letter-spacing: clamp(1.5px, 0.4vw, 2px);
+        }
+
+        .form-header p {
+            opacity: 0.9;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            margin-top: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: clamp(1.2rem, 3vw, 1.5rem);
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            width: 100%;
+            padding: clamp(0.85rem, 2.5vw, 1rem);
+            border: 2px solid rgba(79, 195, 247, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: clamp(0.9rem, 2.3vw, 1rem);
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4fc3f7;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+        }
+
+        .button-group {
+            display: flex;
+            gap: clamp(0.8rem, 2vw, 1rem);
+            margin-top: clamp(1.5rem, 3vw, 2rem);
+            width: 100%;
+        }
+
+        button {
+            flex: 1;
+            padding: clamp(0.85rem, 2.5vw, 1rem) clamp(1.2rem, 3vw, 1.5rem);
+            font-size: clamp(0.85rem, 2.2vw, 1rem);
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: clamp(0.5px, 0.2vw, 1px);
+            white-space: nowrap;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%);
+            color: #000;
+            box-shadow: 0 8px 25px rgba(79, 195, 247, 0.4);
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(79, 195, 247, 0.6);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .error {
+            border-color: #ff6b6b !important;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5) !important;
+        }
+
+        .error-message {
+            color: #ffcccb;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            margin-top: 0.4rem;
+            display: none;
+        }
+
+        @media (max-width: 400px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .form-container {
+                padding: 1.2rem 1rem 1.5rem;
+                max-width: 98vw;
+            }
+
+            .logo-container img {
+                max-width: min(160px, 80vw);
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 401px) and (max-width: 480px) {
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="logo-container">
+        <img src="dps-logo.png" alt="Delhi Public School Bhopal - 25 Years">
+    </div>
+
+    <div class="form-header">
+        <p class="form-subtitle">AURELIA '25</p>
+        <h1>Student Invitation 🎓</h1>
+        <p>Enter your details for the farewell invitation</p>
+    </div>
+
+    <form id="studentForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+            <label for="studentName">Student Name *</label>
+            <input 
+                type="text" 
+                id="studentName" 
+                name="studentName" 
+                placeholder="Enter your full name"
+                required
+            >
+            <span class="error-message" id="nameError">Please enter your name</span>
+        </div>
+
+        <div class="form-group">
+            <label for="studentClass">Class *</label>
+            <input 
+                type="text" 
+                id="studentClass" 
+                name="studentClass" 
+                placeholder="e.g., 12"
+                required
+            >
+            <span class="error-message" id="classError">Please enter your class</span>
+        </div>
+
+        <div class="form-group">
+            <label for="studentSection">Section *</label>
+            <input 
+                type="text" 
+                id="studentSection" 
+                name="studentSection" 
+                placeholder="e.g., A, B, C"
+                required
+            >
+            <span class="error-message" id="sectionError">Please enter your section</span>
+        </div>
+
+        <div class="button-group">
+            <button type="button" class="back-btn" onclick="goBack()">Back</button>
+            <button type="submit" class="submit-btn">Generate</button>
+        </div>
+    </form>
+</div>
+
+<script>
+function handleSubmit(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('studentName').value.trim();
+    const studentClass = document.getElementById('studentClass').value.trim();
+    const section = document.getElementById('studentSection').value.trim();
+    
+    let isValid = true;
+    
+    if (!name) {
+        showError('studentName', 'nameError');
+        isValid = false;
+    }
+    
+    if (!studentClass) {
+        showError('studentClass', 'classError');
+        isValid = false;
+    }
+    
+    if (!section) {
+        showError('studentSection', 'sectionError');
+        isValid = false;
+    }
+    
+    if (!isValid) return;
+    
+    localStorage.setItem('invitationType', 'student');
+    localStorage.setItem('studentName', name);
+    localStorage.setItem('studentClass', studentClass);
+    localStorage.setItem('studentSection', section);
+    
+    window.location.href = 'student-invitation.html';
+}
+
+function showError(inputId, errorId) {
+    document.getElementById(inputId).classList.add('error');
+    document.getElementById(errorId).style.display = 'block';
+    
+    document.getElementById(inputId).addEventListener('input', function() {
+        this.classList.remove('error');
+        document.getElementById(errorId).style.display = 'none';
+    });
+}
+
+function goBack() {
+    window.location.href = 'index.html';
+}
+</script>
+
+</body>
+</html>

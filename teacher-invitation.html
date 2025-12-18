@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Invitation - AURELIA '25</title>
+    <link rel="stylesheet" href="aurelia-style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="farewell-container">
+        <div class="farewell-card">
+            <div class="card-content">
+                <!-- DPS Logo -->
+                <div class="logo-container">
+                    <img src="dps-logo.png" alt="Delhi Public School Bhopal - 25 Years">
+                </div>
+
+                <div class="card-header">
+                    <p class="event-badge">FAREWELL '25</p>
+                    <h1 class="aurelia-title">AURELIA</h1>
+                    <p class="tagline">FORGED IN SILVER, BOUND FOR GOLD</p>
+                    <div class="decorative-line"></div>
+                    <h2 class="farewell-title">Cordial Invitation</h2>
+                </div>
+
+                <div class="student-info">
+                    <p class="greeting">Respected,</p>
+                    <p class="honorific" id="displayDesignation"></p>
+                    <h2 class="student-name" id="displayName">Teacher Name</h2>
+                    <p class="info-text"><span id="displaySubject">Subject/Department</span></p>
+                </div>
+
+                <div class="card-message">
+                    <p>
+                        We, the students of <strong>Class 12</strong>, humbly request your esteemed 
+                        presence at <strong>AURELIA - Farewell 2025</strong>. Your guidance has been 
+                        the silver that forged our foundations, and your wisdom inspires us to reach 
+                        for gold. Please grace this occasion with your blessings as we celebrate our 
+                        journey and prepare to embark on new paths. Your presence would make this 
+                        evening truly special and meaningful to us.
+                    </p>
+                </div>
+
+                <div class="card-footer">
+                    <p class="farewell-wishes">Your blessings mean the world to us! 🙏✨</p>
+                    <p class="date" id="cardDate"></p>
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <button class="action-btn print-btn" onclick="printCard()">Print</button>
+                <button class="action-btn download-btn" onclick="downloadCard()">Download</button>
+                <button class="action-btn back-btn" onclick="goBack()">Edit</button>
+            </div>
+
+            <div class="card-signature" aria-hidden="true">
+                <p class="signature">© All rights reserved by <a style="text-decoration: underline;color: #000000 ;" href="https://www.instagram.com/pastrace1122">Arham.J</a>. </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="teacher-script.js"></script>
+</body>
+</html>
